@@ -47,7 +47,24 @@ def calculate_legislator_votes(legislators_df, vote_results_df):
         "num_opposed_bills",
     ]
 
-    return legislator_votes_count
+    all_legislator_ids = set(legislators_df["id"])
+    voting_legislator_ids = set(legislator_votes_count["id"])
+    non_voting_legislator_ids = all_legislator_ids - voting_legislator_ids
+
+    non_voting_legislators = legislators_df[
+        legislators_df["id"].isin(non_voting_legislator_ids)
+    ].copy()
+    non_voting_legislators["num_supported_bills"] = 0
+    non_voting_legislators["num_opposed_bills"] = 0
+    non_voting_legislators = non_voting_legislators[
+        ["id", "name", "num_supported_bills", "num_opposed_bills"]
+    ]
+
+    combined_legislator_votes = pd.concat(
+        [legislator_votes_count, non_voting_legislators], ignore_index=True
+    )
+
+    return combined_legislator_votes
 
 
 def calculate_bill_votes(bills_df, legislators_df, votes_df, vote_results_df):
@@ -96,7 +113,7 @@ def calculate_bill_votes(bills_df, legislators_df, votes_df, vote_results_df):
         "primary_sponsor",
     ]
 
-    final_bills["primary_sponsor"].fillna("Desconhecido", inplace=True)
+    final_bills["primary_sponsor"].fillna("Unknown", inplace=True)
 
     return final_bills
 
@@ -109,8 +126,10 @@ def save_results(legislator_votes_count, final_bills):
         legislator_votes_count (pd.DataFrame): DataFrame containing the count of bills supported and opposed by legislator.
         final_bills (pd.DataFrame): DataFrame containing the count of supporters and opposers, and the main sponsor of each bill.
     """
-    legislator_votes_count.to_csv("output/legislators-support-oppose-count.csv", index=False)
-    final_bills.to_csv("output/bills.csv", index=False)
+    legislator_votes_count.to_csv(
+        "../output/legislators-support-oppose-count.csv", index=False
+    )
+    final_bills.to_csv("../output/bills.csv", index=False)
 
 
 def main(arg):
@@ -127,8 +146,8 @@ def main(arg):
     final_bills = calculate_bill_votes(
         bills_df, legislators_df, votes_df, vote_results_df
     )
-    save_results(legislator_votes_count,final_bills)
-    
+    save_results(legislator_votes_count, final_bills)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Analyze legislator votes and bills.")
