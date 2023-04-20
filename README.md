@@ -13,6 +13,8 @@ Or, in v2 branch (using POO):
 python run.py src/data/bills.csv src/data/legislators.csv src/data/votes.csv src/data/vote_results.csv
 ```
 
+The architecture needs the scr folder. After git clone move all folders inside src. Only the run.py file is in the root of the project.
+
 Replace <code>&lt;bills.csv&gt;</code>, <code>&lt;legislators.csv&gt;</code>, <code>&lt;votes.csv&gt;</code>, and <code>&lt;vote_results.csv&gt;</code> with the file paths of the corresponding CSV files.
 
 ## Input Data Format
