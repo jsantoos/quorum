@@ -9,11 +9,16 @@ python legislatives_bills_analysis.py <bills.csv> <legislators.csv> <votes.csv> 
 ```
 
 Or, in v2 branch (using POO): 
+
+
+> The architecture needs the <code>&lt;scr&gt;</code> folder.
+
+
+After git clone, move the folders to src path. The file run.py does not need to be in the folder src. 
+
 ```python
 python run.py src/data/bills.csv src/data/legislators.csv src/data/votes.csv src/data/vote_results.csv
 ```
-
-The architecture needs the scr folder. After git clone move all folders inside src. Only the run.py file is in the root of the project.
 
 Replace <code>&lt;bills.csv&gt;</code>, <code>&lt;legislators.csv&gt;</code>, <code>&lt;votes.csv&gt;</code>, and <code>&lt;vote_results.csv&gt;</code> with the file paths of the corresponding CSV files.
 
