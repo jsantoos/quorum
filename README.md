@@ -8,7 +8,7 @@ To run the script, execute the following command:
 python legislatives_bills_analysis.py <bills.csv> <legislators.csv> <votes.csv> <vote_results.csv>
 ```
 
-Or, in v2 branch: 
+Or, in v2 branch (using POO): 
 ```python
 python run.py src/data/bills.csv src/data/legislators.csv src/data/votes.csv src/data/vote_results.csv
 ```
