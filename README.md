@@ -7,6 +7,12 @@ To run the script, execute the following command:
 ```python
 python legislatives_bills_analysis.py <bills.csv> <legislators.csv> <votes.csv> <vote_results.csv>
 ```
+
+On v2 branch: 
+```python
+python run.py src/data/bills.csv src/data/legislators.csv src/data/votes.csv src/data/vote_results.csv
+```
+
 Replace <code>&lt;bills.csv&gt;</code>, <code>&lt;legislators.csv&gt;</code>, <code>&lt;votes.csv&gt;</code>, and <code>&lt;vote_results.csv&gt;</code> with the file paths of the corresponding CSV files.
 
 ## Input Data Format
